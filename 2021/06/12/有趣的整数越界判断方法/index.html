@@ -22,16 +22,16 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="$$ \hat{x}{k}&#x3D;\hat{x}{k}^{-}+K_{t}\left(y_{k}\right) $$ 今天在fastjson的GitHub上看到一个可以复现的bug，依然是反序列化越界问题，issue2041. 在找问题原因的时候，学会了一些知识点,挺有趣的。 bug是：在反序列化一个很长的字符串时候（例如“123123333333333333”），很明显会整数越界，返回的报错为：com">
+  <meta name="description" content="今天在fastjson的GitHub上看到一个可以复现的bug，依然是反序列化越界问题，issue2041. 在找问题原因的时候，学会了一些知识点,挺有趣的。 bug是：在反序列化一个很长的字符串时候（例如“123123333333333333”），很明显会整数越界，返回的报错为：com.alibaba.fastjson.JSONException: parseInt error, field :">
 <meta property="og:type" content="article">
 <meta property="og:title" content="有趣的整数越界判断方法">
 <meta property="og:url" content="http://example.com/2021/06/12/%E6%9C%89%E8%B6%A3%E7%9A%84%E6%95%B4%E6%95%B0%E8%B6%8A%E7%95%8C%E5%88%A4%E6%96%AD%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Evan Taylor">
-<meta property="og:description" content="$$ \hat{x}{k}&#x3D;\hat{x}{k}^{-}+K_{t}\left(y_{k}\right) $$ 今天在fastjson的GitHub上看到一个可以复现的bug，依然是反序列化越界问题，issue2041. 在找问题原因的时候，学会了一些知识点,挺有趣的。 bug是：在反序列化一个很长的字符串时候（例如“123123333333333333”），很明显会整数越界，返回的报错为：com">
+<meta property="og:description" content="今天在fastjson的GitHub上看到一个可以复现的bug，依然是反序列化越界问题，issue2041. 在找问题原因的时候，学会了一些知识点,挺有趣的。 bug是：在反序列化一个很长的字符串时候（例如“123123333333333333”），很明显会整数越界，返回的报错为：com.alibaba.fastjson.JSONException: parseInt error, field :">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/stof-neg.png">
 <meta property="article:published_time" content="2021-06-12T02:02:36.000Z">
-<meta property="article:modified_time" content="2021-06-13T04:11:49.477Z">
+<meta property="article:modified_time" content="2021-06-13T04:29:07.710Z">
 <meta property="article:author" content="Evan Taylor">
 <meta property="article:tag" content="source">
 <meta name="twitter:card" content="summary">
@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-13 12:11:49" itemprop="dateModified" datetime="2021-06-13T12:11:49+08:00">2021-06-13</time>
+                <time title="修改时间：2021-06-13 12:29:07" itemprop="dateModified" datetime="2021-06-13T12:29:07+08:00">2021-06-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -248,10 +248,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>$$<br>
-\hat{x}<em>{k}=\hat{x}</em>{k}^{-}+K_{t}\left(y_{k}\right)<br>
-$$</p>
-<p>今天在fastjson的GitHub上看到一个可以复现的bug，依然是反序列化越界问题，issue2041.<br>
+        <p>今天在fastjson的GitHub上看到一个可以复现的bug，依然是反序列化越界问题，issue2041.<br>
 在找问题原因的时候，学会了一些知识点,挺有趣的。</p>
 <p>bug是：在反序列化一个很长的字符串时候（例如“123123333333333333”），很明显会整数越界，返回的报错为：com.alibaba.fastjson.JSONException: parseInt error, field : i</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//可复现的代码</span></span><br><span class="line"><span class="keyword">package</span> com.issue2041;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.fastjson.JSONObject;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestIssue2041</span> </span>&#123;</span><br><span class="line">    Integer i;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getI</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setI</span><span class="params">(Integer i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.i = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        String sInt[] = <span class="keyword">new</span> String[]&#123;<span class="string">&quot;&#123;\&quot;i\&quot;:11234564654321321&#125;&quot;</span></span><br><span class="line">                , <span class="string">&quot;&#123;\&quot;i\&quot;:1001234564654321321000000000000000000000&#125;&quot;</span></span><br><span class="line">                , <span class="string">&quot;&#123;\&quot;i\&quot;:100000000000000000000012345646543213210&#125;&quot;</span></span><br><span class="line">                , <span class="string">&quot;&#123;\&quot;i\&quot;:10000000000000000000001234564654321321&#125;&quot;</span></span><br><span class="line">                , <span class="string">&quot;&#123;\&quot;i\&quot;:112345646543213210&#125;&quot;</span>&#125;;</span><br><span class="line">        System.out.println(sInt[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">for</span> (String s : sInt) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(JSONObject.toJSONString(JSONObject.parseObject(s, TestIssue2041.class)));</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
