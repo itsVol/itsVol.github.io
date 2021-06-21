@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>JSON基础知识概览</title>
+    <url>/2021/06/09/JSON%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%A6%82%E8%A7%88/</url>
+    <content><![CDATA[<p>Q: What is JSON<br>
+A: JavaScript Object Notation,is a lightweight data-interchange format</p>
+<blockquote>
+<p>JSON is a text format that is completely language independent but uses conventions that are familiar to programmers of the C-family of languages, including C, C++, C#, Java, JavaScript, Perl, Python, and many others.</p>
+</blockquote>
+<p>An object is an unordered set of name/value pairs. An object begins with {left brace and ends with }right brace. Each name is followed by :colon and the name/value pairs are separated by ,comma.</p>
+<blockquote>
+<p>{“name”:“sojson”}</p>
+</blockquote>
+<p>A value can be a string in double quotes, or a number, or true or false or null, or an object or an array. These structures can be nested.</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">UP_UID = BiliJson[&#x27;data&#x27;][&#x27;card&#x27;][&#x27;desc&#x27;][&#x27;user_profile&#x27;][&#x27;info&#x27;][&#x27;uid&#x27;]</span><br></pre></td></tr></table></figure>
+<p>The meaning of this code is BiliJson.data.card.desc.user_profile.info.uid<br>
+for example:</p>
+<span id="more"></span>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">	<span class="attr">&quot;msg&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;message&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;data&quot;</span>: &#123;</span><br><span class="line">		<span class="attr">&quot;card&quot;</span>: &#123;</span><br><span class="line">			<span class="attr">&quot;desc&quot;</span>: &#123;</span><br><span class="line">				<span class="attr">&quot;uid&quot;</span>: <span class="number">0000974</span>,</span><br><span class="line">				<span class="attr">&quot;type&quot;</span>: <span class="number">2</span>,</span><br><span class="line">				<span class="attr">&quot;rid&quot;</span>: <span class="number">138447857</span>,</span><br><span class="line">				<span class="attr">&quot;acl&quot;</span>: <span class="number">0</span>,</span><br><span class="line">				<span class="attr">&quot;view&quot;</span>: <span class="number">252346</span>,</span><br><span class="line">				<span class="attr">&quot;repost&quot;</span>: <span class="number">0</span>,</span><br><span class="line">				<span class="attr">&quot;comment&quot;</span>: <span class="number">40</span>,</span><br><span class="line">				<span class="attr">&quot;like&quot;</span>: <span class="number">1281</span>,</span><br><span class="line">				<span class="attr">&quot;is_liked&quot;</span>: <span class="number">0</span>,</span><br><span class="line">				<span class="attr">&quot;dynamic_id&quot;</span>: <span class="number">2345678900000</span>,</span><br><span class="line">				<span class="attr">&quot;timestamp&quot;</span>: <span class="number">1623232804</span>,</span><br><span class="line">				<span class="attr">&quot;pre_dy_id&quot;</span>: <span class="number">0</span>,</span><br><span class="line">				<span class="attr">&quot;orig_dy_id&quot;</span>: <span class="number">0</span>,</span><br><span class="line">				<span class="attr">&quot;orig_type&quot;</span>: <span class="number">0</span>,</span><br><span class="line">				<span class="attr">&quot;user_profile&quot;</span>: &#123;</span><br><span class="line">					<span class="attr">&quot;info&quot;</span>: &#123;</span><br><span class="line">						<span class="attr">&quot;uid&quot;</span>: <span class="number">111174</span>,</span><br><span class="line">						<span class="attr">&quot;uname&quot;</span>: <span class="string">&quot;evt&quot;</span>,</span><br><span class="line">						</span><br><span class="line">					&#125;,</span><br><span class="line">					<span class="attr">&quot;card&quot;</span>: &#123;</span><br><span class="line">						<span class="attr">&quot;official_verify&quot;</span>: &#123;</span><br><span class="line">							<span class="attr">&quot;type&quot;</span>: <span class="number">0</span>,</span><br><span class="line">							<span class="attr">&quot;desc&quot;</span>: <span class="string">&quot;2020&quot;</span></span><br><span class="line">						&#125;</span><br><span class="line">					&#125;,</span><br><span class="line">					<span class="attr">&quot;vip&quot;</span>: &#123;</span><br><span class="line">						<span class="attr">&quot;vipType&quot;</span>: <span class="number">2</span>,</span><br><span class="line">						<span class="attr">&quot;vipDueDate&quot;</span>: <span class="number">1702396800000</span>,</span><br><span class="line">						<span class="attr">&quot;vipStatus&quot;</span>: <span class="number">1</span>,</span><br><span class="line">						<span class="attr">&quot;themeType&quot;</span>: <span class="number">0</span>,</span><br><span class="line">						<span class="attr">&quot;label&quot;</span>: &#123;</span><br><span class="line">							<span class="attr">&quot;path&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">							<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;会员&quot;</span>,</span><br><span class="line">							<span class="attr">&quot;label_theme&quot;</span>: <span class="string">&quot;annual_vip&quot;</span>,</span><br><span class="line">							<span class="attr">&quot;text_color&quot;</span>: <span class="string">&quot;#FFFFFF&quot;</span>,</span><br><span class="line">							<span class="attr">&quot;bg_style&quot;</span>: <span class="number">1</span>,</span><br><span class="line">							<span class="attr">&quot;bg_color&quot;</span>: <span class="string">&quot;#FB7299&quot;</span>,</span><br><span class="line">							<span class="attr">&quot;border_color&quot;</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">						&#125;,</span><br><span class="line">						<span class="attr">&quot;avatar_subscript&quot;</span>: <span class="number">1</span>,</span><br><span class="line">						<span class="attr">&quot;nickname_color&quot;</span>: <span class="string">&quot;#FB7299&quot;</span>,</span><br><span class="line">						<span class="attr">&quot;role&quot;</span>: <span class="number">3</span>,</span><br><span class="line">						</span><br><span class="line">					&#125;,</span><br><span class="line">				</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>READING LIST:</strong><br>
+<a href="https://www.json.org/json-en.html">https://www.json.org/json-en.html</a><br>
+<a href="https://www.sojson.com/json/json_what.html">https://www.sojson.com/json/json_what.html</a><br>
+<a href="https://www.bejson.com/">https://www.bejson.com/</a></p>
+]]></content>
+      <categories>
+        <category>JSON</category>
+      </categories>
+      <tags>
+        <tag>JSON</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Github CI初体验</title>
     <url>/2021/06/21/Github-CI%E5%88%9D%E4%BD%93%E9%AA%8C/</url>
     <content><![CDATA[<p>原文：http://fe.surge.sh/guide/Github.html#ci<br>
 参考：https://docs.github.com/cn/actions/quickstart<br>
+重点：https://docs.github.com/cn/actions/learn-github-actions<br>
 CI:Continuous Integration,持续集成，属于一种自动化流程，大量节省人员手动合成代码等繁琐操作</p>
 <blockquote>
 <p>持续集成（CI）可以帮助开发人员更加频繁地（有时甚至每天）将代码更改合并到共享分支或“主干”中。一旦开发人员对应用所做的更改被合并，系统就会通过自动构建应用并运行不同级别的自动化测试（通常是单元测试和集成测试）来验证这些更改，确保这些更改没有对应用造成破坏。这意味着测试内容涵盖了从类和函数到构成整个应用的不同模块。如果自动化测试发现新代码和现有代码之间存在冲突，CI 可以更加轻松地快速修复这些错误。</p>
@@ -35,36 +66,6 @@ CI:Continuous Integration,持续集成，属于一种自动化流程，大量节
       </categories>
       <tags>
         <tag>fundamental</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JSON基础知识概览</title>
-    <url>/2021/06/09/JSON%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%A6%82%E8%A7%88/</url>
-    <content><![CDATA[<p>Q: What is JSON<br>
-A: JavaScript Object Notation,is a lightweight data-interchange format</p>
-<blockquote>
-<p>JSON is a text format that is completely language independent but uses conventions that are familiar to programmers of the C-family of languages, including C, C++, C#, Java, JavaScript, Perl, Python, and many others.</p>
-</blockquote>
-<p>An object is an unordered set of name/value pairs. An object begins with {left brace and ends with }right brace. Each name is followed by :colon and the name/value pairs are separated by ,comma.</p>
-<blockquote>
-<p>{“name”:“sojson”}</p>
-</blockquote>
-<p>A value can be a string in double quotes, or a number, or true or false or null, or an object or an array. These structures can be nested.</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">UP_UID = BiliJson[&#x27;data&#x27;][&#x27;card&#x27;][&#x27;desc&#x27;][&#x27;user_profile&#x27;][&#x27;info&#x27;][&#x27;uid&#x27;]</span><br></pre></td></tr></table></figure>
-<p>The meaning of this code is BiliJson.data.card.desc.user_profile.info.uid<br>
-for example:</p>
-<span id="more"></span>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">&quot;code&quot;</span>: <span class="number">0</span>,</span><br><span class="line">	<span class="attr">&quot;msg&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;message&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">	<span class="attr">&quot;data&quot;</span>: &#123;</span><br><span class="line">		<span class="attr">&quot;card&quot;</span>: &#123;</span><br><span class="line">			<span class="attr">&quot;desc&quot;</span>: &#123;</span><br><span class="line">				<span class="attr">&quot;uid&quot;</span>: <span class="number">0000974</span>,</span><br><span class="line">				<span class="attr">&quot;type&quot;</span>: <span class="number">2</span>,</span><br><span class="line">				<span class="attr">&quot;rid&quot;</span>: <span class="number">138447857</span>,</span><br><span class="line">				<span class="attr">&quot;acl&quot;</span>: <span class="number">0</span>,</span><br><span class="line">				<span class="attr">&quot;view&quot;</span>: <span class="number">252346</span>,</span><br><span class="line">				<span class="attr">&quot;repost&quot;</span>: <span class="number">0</span>,</span><br><span class="line">				<span class="attr">&quot;comment&quot;</span>: <span class="number">40</span>,</span><br><span class="line">				<span class="attr">&quot;like&quot;</span>: <span class="number">1281</span>,</span><br><span class="line">				<span class="attr">&quot;is_liked&quot;</span>: <span class="number">0</span>,</span><br><span class="line">				<span class="attr">&quot;dynamic_id&quot;</span>: <span class="number">2345678900000</span>,</span><br><span class="line">				<span class="attr">&quot;timestamp&quot;</span>: <span class="number">1623232804</span>,</span><br><span class="line">				<span class="attr">&quot;pre_dy_id&quot;</span>: <span class="number">0</span>,</span><br><span class="line">				<span class="attr">&quot;orig_dy_id&quot;</span>: <span class="number">0</span>,</span><br><span class="line">				<span class="attr">&quot;orig_type&quot;</span>: <span class="number">0</span>,</span><br><span class="line">				<span class="attr">&quot;user_profile&quot;</span>: &#123;</span><br><span class="line">					<span class="attr">&quot;info&quot;</span>: &#123;</span><br><span class="line">						<span class="attr">&quot;uid&quot;</span>: <span class="number">111174</span>,</span><br><span class="line">						<span class="attr">&quot;uname&quot;</span>: <span class="string">&quot;evt&quot;</span>,</span><br><span class="line">						</span><br><span class="line">					&#125;,</span><br><span class="line">					<span class="attr">&quot;card&quot;</span>: &#123;</span><br><span class="line">						<span class="attr">&quot;official_verify&quot;</span>: &#123;</span><br><span class="line">							<span class="attr">&quot;type&quot;</span>: <span class="number">0</span>,</span><br><span class="line">							<span class="attr">&quot;desc&quot;</span>: <span class="string">&quot;2020&quot;</span></span><br><span class="line">						&#125;</span><br><span class="line">					&#125;,</span><br><span class="line">					<span class="attr">&quot;vip&quot;</span>: &#123;</span><br><span class="line">						<span class="attr">&quot;vipType&quot;</span>: <span class="number">2</span>,</span><br><span class="line">						<span class="attr">&quot;vipDueDate&quot;</span>: <span class="number">1702396800000</span>,</span><br><span class="line">						<span class="attr">&quot;vipStatus&quot;</span>: <span class="number">1</span>,</span><br><span class="line">						<span class="attr">&quot;themeType&quot;</span>: <span class="number">0</span>,</span><br><span class="line">						<span class="attr">&quot;label&quot;</span>: &#123;</span><br><span class="line">							<span class="attr">&quot;path&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">							<span class="attr">&quot;text&quot;</span>: <span class="string">&quot;会员&quot;</span>,</span><br><span class="line">							<span class="attr">&quot;label_theme&quot;</span>: <span class="string">&quot;annual_vip&quot;</span>,</span><br><span class="line">							<span class="attr">&quot;text_color&quot;</span>: <span class="string">&quot;#FFFFFF&quot;</span>,</span><br><span class="line">							<span class="attr">&quot;bg_style&quot;</span>: <span class="number">1</span>,</span><br><span class="line">							<span class="attr">&quot;bg_color&quot;</span>: <span class="string">&quot;#FB7299&quot;</span>,</span><br><span class="line">							<span class="attr">&quot;border_color&quot;</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">						&#125;,</span><br><span class="line">						<span class="attr">&quot;avatar_subscript&quot;</span>: <span class="number">1</span>,</span><br><span class="line">						<span class="attr">&quot;nickname_color&quot;</span>: <span class="string">&quot;#FB7299&quot;</span>,</span><br><span class="line">						<span class="attr">&quot;role&quot;</span>: <span class="number">3</span>,</span><br><span class="line">						</span><br><span class="line">					&#125;,</span><br><span class="line">				</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>READING LIST:</strong><br>
-<a href="https://www.json.org/json-en.html">https://www.json.org/json-en.html</a><br>
-<a href="https://www.sojson.com/json/json_what.html">https://www.sojson.com/json/json_what.html</a><br>
-<a href="https://www.bejson.com/">https://www.bejson.com/</a></p>
-]]></content>
-      <categories>
-        <category>JSON</category>
-      </categories>
-      <tags>
-        <tag>JSON</tag>
       </tags>
   </entry>
   <entry>
