@@ -187,6 +187,97 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/21/Github-CI%E5%88%9D%E4%BD%93%E9%AA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Evan Taylor">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Evan Taylor">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/21/Github-CI%E5%88%9D%E4%BD%93%E9%AA%8C/" class="post-title-link" itemprop="url">Github CI初体验</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-06-21 19:31:36 / 修改时间：20:09:30" itemprop="dateCreated datePublished" datetime="2021-06-21T19:31:36+08:00">2021-06-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/fundamental/" itemprop="url" rel="index"><span itemprop="name">fundamental</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>原文：http://fe.surge.sh/guide/Github.html#ci<br>
+参考：https://docs.github.com/cn/actions/quickstart<br>
+CI:Continuous Integration,持续集成，属于一种自动化流程，大量节省人员手动合成代码等繁琐操作</p>
+<blockquote>
+<p>持续集成（CI）可以帮助开发人员更加频繁地（有时甚至每天）将代码更改合并到共享分支或“主干”中。一旦开发人员对应用所做的更改被合并，系统就会通过自动构建应用并运行不同级别的自动化测试（通常是单元测试和集成测试）来验证这些更改，确保这些更改没有对应用造成破坏。这意味着测试内容涵盖了从类和函数到构成整个应用的不同模块。如果自动化测试发现新代码和现有代码之间存在冲突，CI 可以更加轻松地快速修复这些错误。</p>
+</blockquote>
+<h3 id="基础知识">基础知识</h3>
+<h4 id="创建配置文件">创建配置文件</h4>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p .github/workflows</span><br><span class="line">touch .github/workflows/CI.yaml</span><br></pre></td></tr></table></figure>
+<p>GitHub Doc 提供的yaml模版</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">GitHub</span> <span class="string">Actions</span> <span class="string">Demo</span></span><br><span class="line"><span class="attr">on:</span> [<span class="string">push</span>]</span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">Explore-GitHub-Actions:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">run:</span> <span class="string">echo</span> <span class="string">&quot;🎉 The job was automatically triggered by a $<span class="template-variable">&#123;&#123; github.event_name &#125;&#125;</span> event.&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">run:</span> <span class="string">echo</span> <span class="string">&quot;🐧 This job is now running on a $<span class="template-variable">&#123;&#123; runner.os &#125;&#125;</span> server hosted by GitHub!&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">run:</span> <span class="string">echo</span> <span class="string">&quot;🔎 The name of your branch is $<span class="template-variable">&#123;&#123; github.ref &#125;&#125;</span> and your repository is $<span class="template-variable">&#123;&#123; github.repository &#125;&#125;</span>.&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Check</span> <span class="string">out</span> <span class="string">repository</span> <span class="string">code</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">run:</span> <span class="string">echo</span> <span class="string">&quot;💡 The $<span class="template-variable">&#123;&#123; github.repository &#125;&#125;</span> repository has been cloned to the runner.&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">run:</span> <span class="string">echo</span> <span class="string">&quot;🖥️ The workflow is now ready to test your code on the runner.&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">List</span> <span class="string">files</span> <span class="string">in</span> <span class="string">the</span> <span class="string">repository</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          ls $&#123;&#123; github.workspace &#125;&#125;</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">run:</span> <span class="string">echo</span> <span class="string">&quot;🍏 This job&#x27;s status is $<span class="template-variable">&#123;&#123; job.status &#125;&#125;</span>.&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="监听Git命令">监听Git命令</h4>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  name: CI</span><br><span class="line"></span><br><span class="line"><span class="comment"># Controls when the action will run. Triggers the workflow on push or pull request</span></span><br><span class="line"><span class="comment"># events but only for the dev branch</span></span><br><span class="line">on:</span><br><span class="line">  push:</span><br><span class="line">    branches: [dev, master]</span><br><span class="line">  pull_request:</span><br><span class="line">    branches: [dev, master]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>on表示作用在什么命令上，branches指定在什么分支上。</p>
+<h4 id="添加构建环境">添加构建环境</h4>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">strategy:</span></span><br><span class="line">    <span class="attr">matrix:</span></span><br><span class="line">      <span class="attr">os:</span> [<span class="string">ubuntu-latest</span>, <span class="string">macos-latest</span>, <span class="string">windows-latest</span>]</span><br><span class="line">      <span class="attr">node:</span> [<span class="string">&quot;12&quot;</span>, <span class="string">&quot;13&quot;</span>, <span class="string">&quot;14&quot;</span>]</span><br><span class="line"><span class="attr">name:</span> <span class="string">install</span> <span class="bullet">-</span> <span class="string">$&#123;&#123;</span> <span class="string">matrix.os</span> <span class="string">&#125;&#125;</span> <span class="bullet">-</span> <span class="string">$&#123;&#123;</span> <span class="string">matrix.node</span> <span class="string">&#125;&#125;</span></span><br><span class="line"><span class="attr">runs-on:</span> <span class="string">$&#123;&#123;</span> <span class="string">matrix.os</span> <span class="string">&#125;&#125;</span>  </span><br></pre></td></tr></table></figure>
+<p>build matrix: 确保多个系统，多个版本构建成功。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/21/Github-CI%E5%88%9D%E4%BD%93%E9%AA%8C/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/12/%E6%9C%89%E8%B6%A3%E7%9A%84%E6%95%B4%E6%95%B0%E8%B6%8A%E7%95%8C%E5%88%A4%E6%96%AD%E6%96%B9%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -714,20 +805,20 @@ for example:</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -779,7 +870,7 @@ for example:</p>
 -->
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共2.5k字</span>
+  <span class="post-count">博客全站共3.7k字</span>
 </div>
 
         
